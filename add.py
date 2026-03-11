@@ -3,10 +3,11 @@ def add_two_integers(a, b):
 	print(add_two)
     
 print("Enter two numbers:")
-num_1 = input("First num:")
-num_2 = input("Second num:")
+num_1 = float(input("First num:"))
+num_2 = float(input("Second num:"))
 			  
 add_two_integers(num_1,num_2)
+
 
 
 

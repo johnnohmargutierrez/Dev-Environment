@@ -1,7 +1,11 @@
 def add_two_integers(a, b):
 	print( a + b)
     
-	
-add_two_integers(1,3)
+print("Enter two numbers:")
+num_1 = input("First num:")
+num_2 = input("Second num:"
+			  
+add_two_integers(num_1,num_2)
+
 
 

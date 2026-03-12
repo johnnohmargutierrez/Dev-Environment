@@ -12,7 +12,8 @@ num_1 = float(input("First num:"))
 num_2 = float(input("Second num:"))
 			  
 add_two_integers(num_1,num_2)
-add_two_integers(num_1,num_2)
+multi_two_integers(num_1,num_2)
+
 
 
 

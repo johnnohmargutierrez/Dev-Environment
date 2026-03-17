@@ -2,9 +2,9 @@ name: Snyk Python SAST
 
 on:
   push:
-    branches: [staging-environment]
+    branches: [Staging-Environment]
   pull_request:
-    branches: [staging-environment]
+    branches: [Staging-Environment]
 
 jobs:
   snyk-security:

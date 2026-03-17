@@ -1,6 +1,0 @@
-print("Hello, World!")
-print("My name is Nohmar!")
-print("I was born in December!")
-print("I am already married")
-print("I am a Filipino")
-print("I am a 40 y/o")

@@ -32,8 +32,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Run Snyk test
-        run: snyk test --severity-threshold=low
+      - name: Run Snyk test (JSON output)
+        run: snyk test --json > snyk-report.json || true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 

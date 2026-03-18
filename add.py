@@ -1,4 +1,6 @@
 # Dev changes for Staging
+from getpass import getpass
+
 def add_two_integers(a, b):
 	add_two = a + b
 	print(f"Sum of {a} + {b} is {add_two}")
@@ -13,7 +15,7 @@ def sub_two_integers(a, b):
 
 
 usrname = input("Enter username:")
-pwd = input("Enter password:")
+pwd = getpass("Enter password:")
     
 print("Enter two numbers:")
 num_1 = float(input("First num:"))

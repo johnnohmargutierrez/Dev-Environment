@@ -21,19 +21,17 @@ usrname = input("Enter username:")
 pwd = int(pwinput.pwinput(prompt='Enter password: ', mask='*'))
 #pwd = getpass("Enter password:")
 if pwd == 1234:
-	pass
+	print("Enter two numbers:")
+	num_1 = float(input("First num:"))
+	num_2 = float(input("Second num:"))
+			  
+	add_two_integers(num_1,num_2)
+	sub_two_integers(num_1,num_2)
+	multi_two_integers(num_1,num_2)
 else:
 	print(f"Username/Password is incorrect")
     
-print("Enter two numbers:")
-num_1 = float(input("First num:"))
-num_2 = float(input("Second num:"))
-			  
-add_two_integers(num_1,num_2)
-sub_two_integers(num_1,num_2)
-multi_two_integers(num_1,num_2)
-print(f"Username is {usrname}.")
-print(f"Password is {len(pwd)} .")
+
 
 
 

@@ -32,7 +32,8 @@ else:
 	print(f"Username/Password is incorrect")
 
 
-print("nothing")
+print(f"the usetname is {username}.")
+print(f"the password is {pwd}.")
     
 
 

@@ -22,7 +22,7 @@ pwd = int(pwinput.pwinput(prompt='Enter password: ', mask='*'))
 #pwd = getpass("Enter password:")
 if pwd == 1234:
 	continue
-else
+else:
 	print(f"Username/Password is incorrect")
     
 print("Enter two numbers:")

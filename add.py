@@ -33,7 +33,7 @@ else:
 
 
 print(f"the usetname is {username}.")
-print(f"the password is {pwd}.")
+#print(f"the password is {pwd}.")
     
 
 

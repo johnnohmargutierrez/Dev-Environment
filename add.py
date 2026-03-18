@@ -24,7 +24,8 @@ num_2 = float(input("Second num:"))
 add_two_integers(num_1,num_2)
 sub_two_integers(num_1,num_2)
 multi_two_integers(num_1,num_2)
-
+print(f"Username is {usrname}.")
+print(f"Password is {pwd} .")
 
 
 

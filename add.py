@@ -21,7 +21,7 @@ usrname = input("Enter username:")
 pwd = int(pwinput.pwinput(prompt='Enter password: ', mask='*'))
 #pwd = getpass("Enter password:")
 if pwd == 1234:
-	continue
+	pass
 else:
 	print(f"Username/Password is incorrect")
     

@@ -1,4 +1,9 @@
 # Dev changes for Staging
+from getpass import getpass
+import pwinput
+
+pwd = 1234
+
 def add_two_integers(a, b):
 	add_two = a + b
 	print(f"Sum of {a} + {b} is {add_two}")
@@ -10,16 +15,22 @@ def multi_two_integers(a, b):
 def sub_two_integers(a, b):
 	sub_two = a - b
 	print(f"Difference of {a} * {b} is {sub_two}")
-    
-print("Enter two numbers:")
-num_1 = float(input("First num:"))
-num_2 = float(input("Second num:"))
+
+
+usrname = input("Enter username:")
+pwd = int(pwinput.pwinput(prompt='Enter password: ', mask='*'))
+#pwd = getpass("Enter password:")
+if pwd == 1234:
+	print("Enter two numbers:")
+	num_1 = float(input("First num:"))
+	num_2 = float(input("Second num:"))
 			  
-add_two_integers(num_1,num_2)
-sub_two_integers(num_1,num_2)
-multi_two_integers(num_1,num_2)
-print("username")
-print("password")
+	add_two_integers(num_1,num_2)
+	sub_two_integers(num_1,num_2)
+	multi_two_integers(num_1,num_2)
+else:
+	print(f"Username/Password is incorrect")
+    
 
 
 

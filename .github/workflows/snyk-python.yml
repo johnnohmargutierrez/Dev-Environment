@@ -38,7 +38,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk test (detailed)
-        run: snyk test --severity-threshold=low --all-projects
+        run: snyk test --severity-threshold=low --all-projects --skip-monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 

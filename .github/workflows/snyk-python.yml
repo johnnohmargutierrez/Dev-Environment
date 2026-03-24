@@ -1,4 +1,4 @@
-name: Snyk Python SAST
+name: Snyk Python SAST (with virtualenv)
 
 on:
   push:
@@ -21,9 +21,11 @@ jobs:
         with:
           python-version: '3.10'
 
-      # 3️⃣ Install Python dependencies
-      - name: Install dependencies
+      # 3️⃣ Create and activate a virtual environment
+      - name: Set up virtual environment
         run: |
+          python -m venv venv
+          call venv\Scripts\activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -33,12 +35,16 @@ jobs:
 
       # 5️⃣ Run Snyk test only (skip monitor to avoid 403)
       - name: Run Snyk test
-        run: snyk test --severity-threshold=low --all-projects --skip-monitor
+        run: |
+          call venv\Scripts\activate
+          snyk test --severity-threshold=low --all-projects --skip-monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Optional: you can monitor only if your token/org has proper permissions
+      # Optional: Snyk monitor (enable only if org supports)
       # - name: Snyk Monitor
-      #   run: snyk monitor
+      #   run: |
+      #     call venv\Scripts\activate
+      #     snyk monitor
       #   env:
       #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

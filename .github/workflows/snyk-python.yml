@@ -8,7 +8,10 @@ on:
 
 jobs:
   snyk-security:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       # 1️⃣ Checkout the repository
@@ -21,11 +24,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      # 3️⃣ Create and activate a virtual environment
-      - name: Set up virtual environment and install dependencies
+      # 3️⃣ Install dependencies in a virtual environment
+      - name: Install dependencies
         run: |
           python -m venv venv
-          source venv/bin/activate
+          # Activate venv based on OS
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            venv\Scripts\activate
+          else
+            source venv/bin/activate
+          fi
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -36,15 +44,23 @@ jobs:
       # 5️⃣ Run Snyk test (skip monitor to avoid 403)
       - name: Run Snyk test
         run: |
-          source venv/bin/activate
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            venv\Scripts\activate
+          else
+            source venv/bin/activate
+          fi
           snyk test --severity-threshold=low --all-projects --skip-monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Optional monitor (uncomment if org supports it)
+      # Optional: Snyk monitor (uncomment if org supports)
       # - name: Snyk Monitor
       #   run: |
-      #     source venv/bin/activate
+      #     if [ "$RUNNER_OS" == "Windows" ]; then
+      #       venv\Scripts\activate
+      #     else
+      #       source venv/bin/activate
+      #     fi
       #     snyk monitor
       #   env:
       #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

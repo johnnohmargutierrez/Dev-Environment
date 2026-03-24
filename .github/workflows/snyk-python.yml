@@ -38,11 +38,11 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk test (detailed)
-        run: snyk test --severity-threshold=low --all-projects --org=43042c0a-7aa8-457c-8288-e1179819e2d6
+        run: snyk test --severity-threshold=low --all-projects
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk Monitor
-        run: snyk monitor --org=43042c0a-7aa8-457c-8288-e1179819e2d6
+        run: snyk monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

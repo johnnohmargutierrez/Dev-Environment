@@ -14,53 +14,42 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      # 1️⃣ Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # 3️⃣ Install dependencies in a virtual environment
+      # ✅ Force Bash here
       - name: Install dependencies
+        shell: bash
         run: |
           python -m venv venv
-          # Activate venv based on OS
+
           if [ "$RUNNER_OS" == "Windows" ]; then
-            venv\Scripts\activate
+            source venv/Scripts/activate
           else
             source venv/bin/activate
           fi
+
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4️⃣ Install Snyk CLI
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      # 5️⃣ Run Snyk test (skip monitor to avoid 403)
+      # ✅ Force Bash again
       - name: Run Snyk test
+        shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            venv\Scripts\activate
+            source venv/Scripts/activate
           else
             source venv/bin/activate
           fi
+
           snyk test --severity-threshold=low --all-projects --skip-monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      # Optional: Snyk monitor (uncomment if org supports)
-      # - name: Snyk Monitor
-      #   run: |
-      #     if [ "$RUNNER_OS" == "Windows" ]; then
-      #       venv\Scripts\activate
-      #     else
-      #       source venv/bin/activate
-      #     fi
-      #     snyk monitor
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
